@@ -1,0 +1,100 @@
+html,
+body,
+main,
+section,
+header,
+nav,
+footer,
+article,
+aside,
+canvas,
+details,
+table,
+caption,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td,
+form,
+div,
+span,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+img,
+em,
+input,
+output,
+button,
+audio,
+video,
+strong,
+small {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-weight: 700;
+  line-height: 1em;
+}
+body {
+  line-height: 1em;
+}
+div,
+p,
+a,
+li,
+span,
+button,
+input {
+  line-height: 1em;
+}
+ol,
+ul,
+li {
+  all: unset;
+}
+a {
+  all: unset;
+  display: block;
+  cursor: pointer;
+  height: 100%;
+}
+label {
+  display: block;
+}
+input {
+  all: unset;
+  width: 100%;
+  height: 100%;
+}
+button,
+input[type="button"],
+input[type="submit"] {
+  all: unset;
+  cursor: pointer;
+}
+table {
+  width: 100%;
+}
