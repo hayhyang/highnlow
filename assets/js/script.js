@@ -5,16 +5,19 @@
     {
       // 0
       type: "normal",
-      heightNum: 0, // 브라우저 높이의 n배로 scrollHeight 세팅
+      heightNum: 0,
       scrollHeight: 0,
       objs: {
-        container: document.querySelector("#section0"),
+        container: document.querySelector("#home"),
+        visual: document.querySelector(".visual"),
+        canvas: document.querySelector("canvas"),
+        context: canvas.getContext("2d"),
       },
     },
     {
       // 1
       type: "normal",
-      heightNum: 0, // 브라우저 높이의 n배로 scrollHeight 세팅
+      heightNum: 0,
       scrollHeight: 0,
       objs: {
         container: document.querySelector("#section1"),
@@ -23,7 +26,7 @@
     {
       // 2
       type: "normal",
-      heightNum: 0, // 브라우저 높이의 n배로 scrollHeight 세팅
+      heightNum: 0,
       scrollHeight: 0,
       objs: {
         container: document.querySelector("#section2"),
@@ -32,7 +35,7 @@
     {
       // 3
       type: "normal",
-      heightNum: 0, // 브라우저 높이의 n배로 scrollHeight 세팅
+      heightNum: 0,
       scrollHeight: 0,
       objs: {
         container: document.querySelector("#section3"),
@@ -58,4 +61,10 @@
       scrollLoop();
     });
   }
+
+  window.addEventListener("load", () => {
+    document.body.classList.remove("before-load");
+    setLayout();
+    sectionInfo[0].objs.context.fillRect(25, 25, 100, 100);
+  });
 })();
