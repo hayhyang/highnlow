@@ -21,11 +21,36 @@ $sectionGap: 240px;
   position: absolute;
   bottom: 0.302083333333333em;
   left: -5%;
-  width: 110%;
+  width: 0;
   height: $height;
   background-color: $primary;
   transform: skew(10deg);
   z-index: -1;
+  transition: 0.7s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0.5em);
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textRowPop {
+  0% {
+    opacity: 0;
+    transform: translateX(0.2em);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 html {
@@ -111,14 +136,48 @@ section {
   .copy {
     padding-left: $leftIndent;
     margin-top: -170.5px;
-    h2 {
+    .title {
       display: inline-block;
       font-size: $baseFontSize * 6;
-      span {
+      .word {
         position: relative;
         display: block;
-        &:last-child:before {
-          @include titleLine(0.135416666666667em);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(40px);
+        &.word1 {
+          &.on {
+            animation: fadeIn 0.4s forwards;
+          }
+        }
+        &.word2 {
+          &.on {
+            animation: fadeIn 0.4s forwards;
+          }
+        }
+        &.word3 {
+          transition: 0;
+          display: flex;
+          span {
+            opacity: 0;
+          }
+          &:before {
+            @include titleLine(0.135416666666667em);
+          }
+          &.on {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            &:before {
+              width: 110%;
+            }
+            @for $i from 1 through 9 {
+              span:nth-child(#{$i}) {
+                animation: textRowPop 0.5s 0.05s * $i forwards;
+                // animation: textRowPop 0.5s 0.1s * $i forwards;
+              }
+            }
+          }
         }
       }
     }
@@ -165,6 +224,10 @@ section {
         svg {
           width: 100%;
           height: 100%;
+          transition: 0.2s;
+          path {
+            transition: 0.2s;
+          }
         }
         &.on {
           svg {
@@ -222,7 +285,7 @@ section {
     }
   }
   .list {
-    // height: 72.3611111111111vw;
+    height: 72.3611111111111vw;
     // height: 100vw;
     .item {
       position: absolute;
