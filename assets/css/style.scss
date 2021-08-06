@@ -11,7 +11,9 @@ $primary: #b9ff7d;
 $gray: #687070;
 $lightGray: #adaeae;
 $white: #ffffff;
-$sectionIndent: 18.75vw;
+$leftIndent: 15.9722222222222vw;
+$rightIndent: 7.9861111111111vw;
+$sectionGap: 240px;
 
 @mixin titleLine($height) {
   content: "";
@@ -92,7 +94,7 @@ body {
 section {
   position: relative;
   &:not(:last-child) {
-    margin-bottom: 240px;
+    margin-bottom: $sectionGap;
   }
 }
 
@@ -102,11 +104,15 @@ section {
   }
   .visual {
     canvas {
+      width: 86.4583333333333vw;
+      height: 53.8541666666667vw;
     }
   }
   .copy {
-    position: absolute;
+    padding-left: $leftIndent;
+    margin-top: -170.5px;
     h2 {
+      display: inline-block;
       font-size: $baseFontSize * 6;
       span {
         position: relative;
@@ -126,10 +132,11 @@ section {
     min-height: 100vh;
     z-index: -1;
     .title {
-      padding-left: $sectionIndent;
+      padding-left: $leftIndent;
       font-size: $baseFontSize;
       position: absolute;
-      top: 20vh;
+      // top: 20vh;
+      top: 63px;
       span {
         line-height: 1.5em;
         display: block;
@@ -138,8 +145,9 @@ section {
     .arrow__wrap {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      // align-items: center;
       min-height: 100vh;
+      padding: 63px 0;
       .arrow {
         width: 25.1388888888889vw;
         height: 25.1388888888889vw;
@@ -148,7 +156,7 @@ section {
           margin-top: auto;
         }
         &.arrow2 {
-          transform: rotate(45deg);
+          transform: rotate(45deg) translate(10%, 10%);
         }
         &.arrow3 {
           margin-top: auto;
@@ -171,6 +179,7 @@ section {
   }
   .copy {
     display: flex;
+    padding-right: $rightIndent;
     .list {
       width: 38.5416666666667vw;
       margin-left: auto;
@@ -179,7 +188,7 @@ section {
       font-size: $baseFontSize * 0.75;
       margin-bottom: 238px;
       &:last-child {
-        margin-bottom: 50vh;
+        margin-bottom: 100vh;
       }
       .desc {
         margin-top: 1.5em;
@@ -193,9 +202,17 @@ section {
 #works {
   .copy {
     padding-top: 184px;
-    h3 {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    pointer-events: none;
+    .title {
       font-size: $baseFontSize * 6;
       font-weight: 500;
+      font-family: "Noto Sans KR", sans-serif;
+      .draw {
+        font-family: "Amiri", serif;
+      }
     }
     .desc {
       font-size: $baseFontSize * 0.75;
@@ -205,10 +222,13 @@ section {
     }
   }
   .list {
+    // height: 72.3611111111111vw;
+    // height: 100vw;
     .item {
-      // position: absolute;
+      position: absolute;
       display: flex;
       align-items: flex-start;
+      cursor: pointer;
       .num {
         font-size: $baseFontSize * 2.25;
         font-style: italic;
@@ -218,9 +238,18 @@ section {
       .name {
         font-size: $baseFontSize * 0.75;
         line-height: 1.25em;
+        padding-top: 4px;
       }
       .thumb {
-        background-color: yellow;
+        pointer-events: none;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.5s;
+        height: 0;
+        transform: scale(0);
+        img {
+          width: 100%;
+        }
       }
       &:nth-child(odd) {
         flex-direction: row;
@@ -236,9 +265,15 @@ section {
       }
       &:nth-child(1) {
         top: 0;
-        right: calc(12.2222222222222vw - 40px);
+        left: calc(46.4583333333333vw - 40px);
         .thumb {
           width: 534px;
+          height: 300px;
+        }
+        &:after {
+          content: url(../videos/playin_1.mp4);
+          display: block;
+          width: 500px;
           height: 300px;
         }
       }
@@ -266,16 +301,34 @@ section {
           height: 508px;
         }
       }
+      &.item1 {
+        video {
+          width: 100%;
+        }
+      }
+      &.item2 {
+        video {
+          height: 100%;
+        }
+      }
+      &:hover {
+        .thumb {
+          opacity: 1;
+          visibility: visible;
+          height: 100%;
+        }
+      }
     }
   }
 }
 
 #hiring {
+  padding-right: $rightIndent;
   h3 {
     font-size: $baseFontSize * 4;
     position: sticky;
     top: 30vh;
-    margin-left: $sectionIndent;
+    margin-left: $leftIndent;
   }
   .copy {
     width: 38.5416666666667vw;
@@ -306,7 +359,7 @@ section {
 }
 
 #contact {
-  padding-left: $sectionIndent;
+  padding-left: $leftIndent;
   .copy {
     width: 47.0138888888889vw;
     .descs {
@@ -340,30 +393,105 @@ section {
     }
   }
   .forms {
+    display: flex;
+
     .info {
       font-size: $baseFontSize * 0.75;
+      flex: 1 1 0;
+      padding-top: 272px;
       .title {
         background: url(../images/logo.svg) no-repeat;
         background-size: cover;
         width: 55px;
         height: 13px;
-        margin-bottom: 40px;
+        margin-bottom: $baseGap * 2;
       }
       .list {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: $sectionGap / 2;
         .item {
+          &:not(:last-child) {
+            margin-bottom: 2.333333333333333em;
+          }
+        }
+      }
+      .desc {
+        font-size: $baseFontSize;
+        font-weight: 700;
+        line-height: 1.5em;
+      }
+      .arrow {
+        width: 26.25vw;
+        position: absolute;
+        bottom: 45px;
+        left: 22.9861111111111vw;
+        pointer-events: none;
+        svg {
+          width: 100%;
         }
       }
     }
     .form {
-      padding: 40px;
+      flex: 1.2826 1 0;
+      padding: $baseGap * 2;
       background-color: $primary;
+      margin-top: -35px;
       .input__box {
         display: flex;
         border-bottom: 1px solid $black;
+        padding-bottom: 0.875em;
+        &:not(:last-child) {
+          margin-bottom: $baseGap * 2;
+        }
         label {
           font-weight: 700;
+          width: 190px;
         }
-        input[type="text"] {
+        textarea {
+          height: 15.125em;
+          line-height: 1.5em;
+        }
+        &.checkbox {
+          padding: 0 10px;
+          border: none;
+          label {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            .checked {
+              display: block;
+              width: 1.5em;
+              height: 1.5em;
+              background-color: #fff;
+              border: 1px solid $black;
+              margin-right: $baseGap * 2;
+              transition: 0.3s;
+            }
+            label {
+              width: auto;
+            }
+            input[type="checkbox"] {
+              display: none;
+              &:checked ~ .checked {
+                background-color: $black;
+              }
+            }
+          }
+        }
+      }
+      input[type="submit"] {
+        background-color: #fff;
+        border: 1px solid $black;
+        font-weight: 700;
+        color: $black;
+        width: 100%;
+        height: 3.5em;
+        text-align: center;
+        transition: 0.3s;
+        &:hover {
+          background-color: $black;
+          color: #fff;
         }
       }
     }

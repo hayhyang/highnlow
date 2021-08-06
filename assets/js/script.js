@@ -1,5 +1,7 @@
 (() => {
   let yOffset = 0;
+  const w = innerWidth;
+  const h = innerHeight;
 
   const sectionInfo = [
     {
@@ -10,7 +12,7 @@
       objs: {
         container: document.querySelector("#home"),
         visual: document.querySelector(".visual"),
-        canvas: document.querySelector("canvas"),
+        canvas: document.querySelector("#canvas"),
         context: canvas.getContext("2d"),
       },
     },
@@ -65,6 +67,7 @@
   window.addEventListener("load", () => {
     document.body.classList.remove("before-load");
     setLayout();
-    sectionInfo[0].objs.context.fillRect(25, 25, 100, 100);
+    sectionInfo[0].objs.context.fillStyle = "#B9FF7D";
+    sectionInfo[0].objs.context.fillRect(0, 0, w, h);
   });
 })();
