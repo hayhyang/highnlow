@@ -36,12 +36,25 @@
       // works
       objs: {
         container: document.querySelector("#works"),
+        copy: document.querySelector("#works .copy"),
+        title: document.querySelector("#works .title"),
+        titleDraw: document.querySelector("#works .draw"),
+        item1: document.querySelector("#works .item1"),
+        item2: document.querySelector("#works .item2"),
+        item3: document.querySelector("#works .item3"),
+        item4: document.querySelector("#works .item4"),
       },
     },
     {
       // hiring
       objs: {
         container: document.querySelector("#hiring"),
+        title: document.querySelector("#hiring .title"),
+        item1: document.querySelector("#hiring .item1"),
+        item2: document.querySelector("#hiring .item2"),
+        item3: document.querySelector("#hiring .item3"),
+        item4: document.querySelector("#hiring .item4"),
+        item5: document.querySelector("#hiring .item5"),
       },
     },
     {
@@ -92,6 +105,50 @@
         });
         sectionInfo[1].objs.arrow3.classList.add("on");
       }
+
+      // works
+      let worksValue =
+        1 -
+        (sectionInfo[2].objs.title.getBoundingClientRect().top - h / 2) /
+          (h / 2);
+      if (worksValue > 1) {
+        worksValue = 1;
+      } else if (worksValue < 0) {
+        worksValue = 0;
+      }
+
+      if (0 > sectionInfo[2].objs.copy.getBoundingClientRect().top - h) {
+        sectionInfo[2].objs.copy.style.transform = `translateY(${
+          70 - worksValue * 70
+        }px)`;
+        sectionInfo[2].objs.title.style.opacity = worksValue;
+
+        // sectionInfo[2].objs.title.style.opacity = worksValue;
+        // sectionInfo[2].objs.title.style.transform = `translate3d(0,${
+        //   100 - worksValue * 100
+        // },0)`;
+        console.log(100 - worksValue * 100);
+      }
+      if (0 > sectionInfo[2].objs.titleDraw.getBoundingClientRect().top - h) {
+        sectionInfo[2].objs.titleDraw.classList.add("on");
+      }
+
+      // hiring
+      if (0 > sectionInfo[3].objs.item1.getBoundingClientRect().top - h) {
+        sectionInfo[3].objs.item1.classList.add("on");
+      }
+      if (0 > sectionInfo[3].objs.item2.getBoundingClientRect().top - h) {
+        sectionInfo[3].objs.item2.classList.add("on");
+      }
+      if (0 > sectionInfo[3].objs.item3.getBoundingClientRect().top - h) {
+        sectionInfo[3].objs.item3.classList.add("on");
+      }
+      if (0 > sectionInfo[3].objs.item4.getBoundingClientRect().top - h) {
+        sectionInfo[3].objs.item4.classList.add("on");
+      }
+      if (0 > sectionInfo[3].objs.item5.getBoundingClientRect().top - h) {
+        sectionInfo[3].objs.item5.classList.add("on");
+      }
     }
 
     window.addEventListener("resize", setLayout);
@@ -113,6 +170,6 @@
 
     console.log(sectionInfo[1].objs.item1.getBoundingClientRect().top);
     console.log(sectionInfo[1].objs.item2.getBoundingClientRect().top);
-    console.log(sectionInfo[1].objs.item3.getBoundingClientRect().top);
+    console.log(sectionInfo[2].objs.titleDraw.getBoundingClientRect().top);
   });
 })();

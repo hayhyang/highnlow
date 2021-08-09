@@ -53,6 +53,17 @@ $sectionGap: 240px;
   }
 }
 
+@keyframes textBlur {
+  0% {
+    opacity: 0;
+    filter: blur(20px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -273,8 +284,34 @@ section {
       font-size: $baseFontSize * 6;
       font-weight: 500;
       font-family: "Noto Sans KR", sans-serif;
+      opacity: 0;
       .draw {
         font-family: "Amiri", serif;
+        span {
+          opacity: 0;
+        }
+        &.on {
+          span {
+            &:nth-child(1) {
+              animation: textBlur 0.8s 0.5s forwards;
+            }
+            &:nth-child(2) {
+              animation: textBlur 0.8s 0.1s forwards;
+            }
+            &:nth-child(3) {
+              animation: textBlur 0.8s 0.4s forwards;
+            }
+            &:nth-child(4) {
+              animation: textBlur 0.8s 0.6s forwards;
+            }
+            &:nth-child(5) {
+              animation: textBlur 0.8s 0.2s forwards;
+            }
+            &:nth-child(6) {
+              animation: textBlur 0.8s 0.3s forwards;
+            }
+          }
+        }
       }
     }
     .desc {
@@ -413,9 +450,39 @@ section {
         &:before {
           @include titleLine(0.25em);
         }
+        span {
+          display: flex;
+          opacity: 0;
+          &.blank {
+            display: block;
+            width: 0.2em;
+          }
+        }
       }
       .desc {
         font-size: $baseFontSize * 0.75;
+        opacity: 0;
+        transform: translateY(20px);
+        visibility: hidden;
+        transition: 0.5s 0.2s;
+      }
+      &.on {
+        .title {
+          &:before {
+            width: 110%;
+          }
+          @for $i from 1 through 20 {
+            span:nth-child(#{$i}) {
+              animation: textRowPop 0.5s 0.05s * $i forwards;
+              // animation: textRowPop 0.5s 0.1s * $i forwards;
+            }
+          }
+        }
+        .desc {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
       }
     }
   }
