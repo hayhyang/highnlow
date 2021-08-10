@@ -4,6 +4,9 @@
 // font-family: 'Lato', sans-serif;
 // font-family: 'Noto Sans KR', sans-serif;
 
+$urlImage: "../images";
+$urlVideo: "../videos";
+
 $baseGap: 20px;
 $baseFontSize: 16px;
 $black: #0a0b0b;
@@ -14,6 +17,14 @@ $white: #ffffff;
 $leftIndent: 15.9722222222222vw;
 $rightIndent: 7.9861111111111vw;
 $sectionGap: 240px;
+
+// $gradientProgress: -10.4652%;
+// $gradientProgress2: 89.5348%;
+// $gradientAngle: 135deg;
+// $gradientColor: 0;
+// $gradientColor2: 0;
+// $gradientOpacity: 1;
+// $gradientOpacity2: 0;
 
 @mixin titleLine($height) {
   content: "";
@@ -53,13 +64,26 @@ $sectionGap: 240px;
   }
 }
 
-@keyframes textBlur {
+@keyframes blurEffect {
   0% {
     opacity: 0;
     filter: blur(20px);
   }
   100% {
     opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes visualEffect {
+  0% {
+    // opacity: 0;
+    transform: scale(200%);
+    filter: blur(100px);
+  }
+  100% {
+    // opacity: 1;
+    transform: scale(100%);
     filter: blur(0px);
   }
 }
@@ -99,7 +123,7 @@ body {
     a {
       width: 100%;
       height: 100%;
-      background: url(../images/logo.svg);
+      background: url(#{$urlImage}/logo.svg);
       background-size: cover;
     }
   }
@@ -117,7 +141,7 @@ body {
     width: 24px;
     height: 24px;
     display: block;
-    background: url(../images/ic_instagram.svg);
+    background: url(#{$urlImage}/ic_instagram.svg);
     background-size: cover;
   }
 }
@@ -139,6 +163,25 @@ section {
     min-height: 100vh;
   }
   .visual {
+    // padding-top: 30px;
+    width: 86.4583333333333vw;
+    // height: 53.8541666666667vw;
+    .blank {
+      height: 30px;
+      display: block;
+      position: sticky;
+      top: 0;
+      background-color: #fff;
+    }
+    img {
+      // opacity: 0;
+      width: 100%;
+    }
+    &.on {
+      img {
+        // animation: visualEffect 1s forwards;
+      }
+    }
     canvas {
       width: 86.4583333333333vw;
       height: 53.8541666666667vw;
@@ -280,11 +323,14 @@ section {
     top: 0;
     z-index: 10;
     pointer-events: none;
+    // opacity: 0;
     .title {
       font-size: $baseFontSize * 6;
       font-weight: 500;
       font-family: "Noto Sans KR", sans-serif;
-      opacity: 0;
+      // background-clip: text;
+      // -webkit-background-clip: text;
+      // -webkit-text-fill-color: transparent;
       .draw {
         font-family: "Amiri", serif;
         span {
@@ -293,22 +339,22 @@ section {
         &.on {
           span {
             &:nth-child(1) {
-              animation: textBlur 0.8s 0.5s forwards;
+              animation: blurEffect 1s 0.3s forwards;
             }
             &:nth-child(2) {
-              animation: textBlur 0.8s 0.1s forwards;
+              animation: blurEffect 0.7s 0.1s forwards;
             }
             &:nth-child(3) {
-              animation: textBlur 0.8s 0.4s forwards;
+              animation: blurEffect 0.6s 0.4s forwards;
             }
             &:nth-child(4) {
-              animation: textBlur 0.8s 0.6s forwards;
+              animation: blurEffect 0.7s 0.6s forwards;
             }
             &:nth-child(5) {
-              animation: textBlur 0.8s 0.2s forwards;
+              animation: blurEffect 0.9s 0.2s forwards;
             }
             &:nth-child(6) {
-              animation: textBlur 0.8s 0.3s forwards;
+              animation: blurEffect 0.5s 0.5s forwards;
             }
           }
         }
@@ -371,7 +417,7 @@ section {
           height: 300px;
         }
         &:after {
-          content: url(../videos/playin_1.mp4);
+          content: url(#{$urlVideo}/playin_1.mp4);
           display: block;
           width: 500px;
           height: 300px;
@@ -424,11 +470,15 @@ section {
 
 #hiring {
   padding-right: $rightIndent;
-  h3 {
+  > .title {
     font-size: $baseFontSize * 4;
     position: sticky;
     top: 30vh;
     margin-left: $leftIndent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: 30%;
   }
   .copy {
     width: 38.5416666666667vw;
@@ -442,6 +492,7 @@ section {
       font-weight: 700;
     }
     .item {
+      --titleBarWidth: 0;
       .title {
         font-weight: 900;
         margin-bottom: 1.25em;
@@ -449,6 +500,8 @@ section {
         display: inline-block;
         &:before {
           @include titleLine(0.25em);
+          // width: var(--titleBarWidth);
+          // transition: none;
         }
         span {
           display: flex;
@@ -461,10 +514,25 @@ section {
       }
       .desc {
         font-size: $baseFontSize * 0.75;
-        opacity: 0;
-        transform: translateY(20px);
-        visibility: hidden;
-        transition: 0.5s 0.2s;
+        // opacity: 0;
+        // transform: translateY(20px);
+        // visibility: hidden;
+        // transition: 0.5s 0.2s;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        // background-image: linear-gradient(
+        //   $gradientAngle,
+        //   rgba($gradientColor, $gradientColor, $gradientColor, $gradientOpacity)
+        //     $gradientProgress,
+        //   rgba(
+        //       $gradientColor2,
+        //       $gradientColor2,
+        //       $gradientColor2,
+        //       $gradientOpacity2
+        //     )
+        //     $gradientProgress2
+        // );
       }
       &.on {
         .title {
@@ -479,9 +547,9 @@ section {
           }
         }
         .desc {
-          opacity: 1;
-          visibility: visible;
-          transform: translateY(0);
+          // opacity: 1;
+          // visibility: visible;
+          // transform: translateY(0);
         }
       }
     }
@@ -530,7 +598,7 @@ section {
       flex: 1 1 0;
       padding-top: 272px;
       .title {
-        background: url(../images/logo.svg) no-repeat;
+        background: url(#{$urlImage}/logo.svg) no-repeat;
         background-size: cover;
         width: 55px;
         height: 13px;

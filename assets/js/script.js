@@ -3,6 +3,10 @@
   const w = innerWidth;
   const h = innerHeight;
   let basePoint;
+  let getStyle = getComputedStyle(document.documentElement);
+  let gradientProgress = -10.4652;
+  let gradientProgress2 = 89.5348;
+  let gradientAngle = getStyle.getPropertyValue("$gradientAngle");
 
   const sectionInfo = [
     {
@@ -10,8 +14,9 @@
       objs: {
         container: document.querySelector("#home"),
         visual: document.querySelector(".visual"),
-        canvas: document.querySelector("#canvas"),
-        context: canvas.getContext("2d"),
+        // canvas: document.querySelector("#canvas"),
+        // context: canvas.getContext("2d"),
+        title: document.querySelector("#home .title"),
         words: document.querySelectorAll("#home .word"),
         word1: document.querySelector("#home .word1"),
         word2: document.querySelector("#home .word2"),
@@ -37,7 +42,7 @@
       objs: {
         container: document.querySelector("#works"),
         copy: document.querySelector("#works .copy"),
-        title: document.querySelector("#works .title"),
+        title: document.querySelector("#works .copy > .title"),
         titleDraw: document.querySelector("#works .draw"),
         item1: document.querySelector("#works .item1"),
         item2: document.querySelector("#works .item2"),
@@ -49,12 +54,17 @@
       // hiring
       objs: {
         container: document.querySelector("#hiring"),
-        title: document.querySelector("#hiring .title"),
+        title: document.querySelector("#hiring > .title"),
         item1: document.querySelector("#hiring .item1"),
         item2: document.querySelector("#hiring .item2"),
         item3: document.querySelector("#hiring .item3"),
         item4: document.querySelector("#hiring .item4"),
         item5: document.querySelector("#hiring .item5"),
+        desc1: document.querySelector("#hiring .item1 .desc"),
+        desc2: document.querySelector("#hiring .item2 .desc"),
+        desc3: document.querySelector("#hiring .item3 .desc"),
+        desc4: document.querySelector("#hiring .item4 .desc"),
+        desc5: document.querySelector("#hiring .item5 .desc"),
       },
     },
     {
@@ -64,8 +74,6 @@
       },
     },
   ];
-
-  function setCanvasDraw() {}
 
   function setLayout() {
     for (let i; i < sectionInfo.length; i++) {
@@ -78,6 +86,9 @@
 
     function animate() {
       // home
+
+      let homeTitleValue =
+        (h - sectionInfo[0].objs.title.getBoundingClientRect().top) / (h / 2);
       if (yOffset + h > sectionInfo[0].objs.word1.offsetTop - h) {
         sectionInfo[0].objs.words.forEach((word, i) => {
           setTimeout(function () {
@@ -86,8 +97,14 @@
         });
       }
 
-      // about
+      if (yOffset > sectionInfo[0].objs.title.offsetTop - 100) {
+        console.log(
+          "~~~~~~~~~~~~~~",
+          yOffset - sectionInfo[0].objs.title.offsetTop - 100
+        );
+      }
       if (0 > sectionInfo[1].objs.item1.getBoundingClientRect().top - h) {
+        // about
         sectionInfo[1].objs.arrows.forEach((item) => {
           item.classList.remove("on");
         });
@@ -107,47 +124,156 @@
       }
 
       // works
-      let worksValue =
-        1 -
-        (sectionInfo[2].objs.title.getBoundingClientRect().top - h / 2) /
-          (h / 2);
-      if (worksValue > 1) {
-        worksValue = 1;
-      } else if (worksValue < 0) {
-        worksValue = 0;
-      }
+
+      let worksTitleValue =
+        (h - sectionInfo[2].objs.title.getBoundingClientRect().bottom) /
+        (h / 2);
 
       if (0 > sectionInfo[2].objs.copy.getBoundingClientRect().top - h) {
         sectionInfo[2].objs.copy.style.transform = `translateY(${
-          70 - worksValue * 70
+          70 - worksTitleValue * 70
         }px)`;
-        sectionInfo[2].objs.title.style.opacity = worksValue;
-
-        // sectionInfo[2].objs.title.style.opacity = worksValue;
-        // sectionInfo[2].objs.title.style.transform = `translate3d(0,${
-        //   100 - worksValue * 100
-        // },0)`;
-        console.log(100 - worksValue * 100);
+        sectionInfo[2].objs.copy.style.opacity = worksTitleValue;
+        console.log(
+          "동작해야함",
+          (h - sectionInfo[2].objs.title.getBoundingClientRect().bottom) /
+            (h / 2)
+        );
       }
-      if (0 > sectionInfo[2].objs.titleDraw.getBoundingClientRect().top - h) {
+      if (
+        0 >
+        sectionInfo[2].objs.titleDraw.getBoundingClientRect().top - h * 0.6
+      ) {
         sectionInfo[2].objs.titleDraw.classList.add("on");
       }
 
-      // hiring
-      if (0 > sectionInfo[3].objs.item1.getBoundingClientRect().top - h) {
-        sectionInfo[3].objs.item1.classList.add("on");
+      // if (0 > sectionInfo[2].objs.title.getBoundingClientRect().top - h) {
+      //   console.log(-100 + worksTitleValue * 100, worksTitleValue * 100);
+      //   sectionInfo[2].objs.title.style.cssText = `background-image: linear-gradient(
+      //       135deg, rgba(0, 0, 0, 1) ${
+      //         -100 + worksTitleValue * 100
+      //       }%, rgba(0, 0, 0, 0) ${worksTitleValue * 100}%
+      //   );`;
+      // }
+      if (worksTitleValue > 1) {
+        worksTitleValue = 1;
+      } else if (worksTitleValue < 0) {
+        worksTitleValue = 0;
       }
-      if (0 > sectionInfo[3].objs.item2.getBoundingClientRect().top - h) {
+
+      let worksItem1Value =
+        (h - sectionInfo[2].objs.item1.getBoundingClientRect().top) / (h / 2);
+      let worksItem2Value =
+        (h - sectionInfo[2].objs.item2.getBoundingClientRect().top) / (h / 2);
+      let worksItem3Value =
+        (h - sectionInfo[2].objs.item3.getBoundingClientRect().top) / (h / 2);
+      let worksItem4Value =
+        (h - sectionInfo[2].objs.item4.getBoundingClientRect().top) / (h / 2);
+
+      if (0 > sectionInfo[2].objs.item1.getBoundingClientRect().top - h) {
+        sectionInfo[2].objs.item1.style.cssText = `
+          opacity: ${worksItem1Value * 2};
+          // transform: translate3d(0,${worksItem1Value * 60}px,0);
+        `;
+        sectionInfo[2].objs.item1.style.opacity = worksItem1Value * 2;
+      }
+      if (0 > sectionInfo[2].objs.item2.getBoundingClientRect().top - h) {
+        sectionInfo[2].objs.item2.style.cssText = `
+          opacity: ${worksItem2Value * 2};
+          transform: translate3d(0,${worksItem2Value * 160}px,0);
+        `;
+      }
+      if (0 > sectionInfo[2].objs.item3.getBoundingClientRect().top - h) {
+        sectionInfo[2].objs.item3.style.cssText = `
+          opacity: ${worksItem3Value * 2};
+          transform: translate3d(0,${worksItem3Value * 80}px,0);
+        `;
+      }
+      if (0 > sectionInfo[2].objs.item4.getBoundingClientRect().top - h) {
+        sectionInfo[2].objs.item4.style.cssText = `
+          opacity: ${worksItem4Value * 2};
+          // transform: translate3d(0,${worksItem4Value * 100}px,0);
+        `;
+      }
+
+      // hiring
+      let hiringTitleValue =
+        (h - sectionInfo[3].objs.title.getBoundingClientRect().top) / (h / 2);
+
+      if (0 > sectionInfo[3].objs.title.getBoundingClientRect().top - h) {
+        console.log(-100 + hiringTitleValue * 100, hiringTitleValue * 100);
+        sectionInfo[3].objs.title.style.cssText = `background-image: linear-gradient(
+            135deg, rgba(0, 0, 0, 1) ${
+              -100 + hiringTitleValue * 100
+            }%, rgba(0, 0, 0, 0) ${hiringTitleValue * 100}%
+        );`;
+      }
+
+      let hiringDesc1Value =
+        (h - sectionInfo[3].objs.desc1.getBoundingClientRect().top) / (h / 2);
+      let hiringDesc2Value =
+        (h - sectionInfo[3].objs.desc2.getBoundingClientRect().top) / (h / 2);
+      let hiringDesc3Value =
+        (h - sectionInfo[3].objs.desc3.getBoundingClientRect().top) / (h / 2);
+      let hiringDesc4Value =
+        (h - sectionInfo[3].objs.desc4.getBoundingClientRect().top) / (h / 2);
+      let hiringDesc5Value =
+        (h - sectionInfo[3].objs.desc5.getBoundingClientRect().top) / (h / 2);
+
+      // if (0 > sectionInfo[3].objs.item1.getBoundingClientRect().bottom - h) {
+      //   sectionInfo[3].objs.item1.classList.add("on");
+      //   sectionInfo[3].objs.item1.style.setProperty(
+      //     "--titleBarWidth",
+      //     `${110 * hiringDesc1Value}%`
+      //   );
+      // }
+      if (0 > sectionInfo[3].objs.item2.getBoundingClientRect().bottom - h) {
         sectionInfo[3].objs.item2.classList.add("on");
       }
-      if (0 > sectionInfo[3].objs.item3.getBoundingClientRect().top - h) {
+      if (0 > sectionInfo[3].objs.item3.getBoundingClientRect().bottom - h) {
         sectionInfo[3].objs.item3.classList.add("on");
       }
-      if (0 > sectionInfo[3].objs.item4.getBoundingClientRect().top - h) {
+      if (0 > sectionInfo[3].objs.item4.getBoundingClientRect().bottom - h) {
         sectionInfo[3].objs.item4.classList.add("on");
       }
-      if (0 > sectionInfo[3].objs.item5.getBoundingClientRect().top - h) {
+      if (0 > sectionInfo[3].objs.item5.getBoundingClientRect().bottom - h) {
         sectionInfo[3].objs.item5.classList.add("on");
+      }
+
+      if (0 > sectionInfo[3].objs.desc1.getBoundingClientRect().top - h) {
+        sectionInfo[3].objs.desc1.style.cssText = `background-image: linear-gradient(
+            135deg, rgba(0, 0, 0, 1) ${
+              -100 + hiringDesc1Value * 100
+            }%, rgba(0, 0, 0, 0) ${hiringDesc1Value * 100}%
+        );`;
+      }
+      if (0 > sectionInfo[3].objs.desc2.getBoundingClientRect().top - h) {
+        sectionInfo[3].objs.desc2.style.cssText = `background-image: linear-gradient(
+            135deg, rgba(0, 0, 0, 1) ${
+              -100 + hiringDesc2Value * 100
+            }%, rgba(0, 0, 0, 0) ${hiringDesc2Value * 100}%
+        );`;
+      }
+      if (0 > sectionInfo[3].objs.desc3.getBoundingClientRect().top - h) {
+        sectionInfo[3].objs.desc3.style.cssText = `background-image: linear-gradient(
+            135deg, rgba(0, 0, 0, 1) ${
+              -100 + hiringDesc3Value * 100
+            }%, rgba(0, 0, 0, 0) ${hiringDesc3Value * 100}%
+        );`;
+      }
+      if (0 > sectionInfo[3].objs.desc4.getBoundingClientRect().top - h) {
+        sectionInfo[3].objs.desc4.style.cssText = `background-image: linear-gradient(
+            135deg, rgba(0, 0, 0, 1) ${
+              -100 + hiringDesc4Value * 100
+            }%, rgba(0, 0, 0, 0) ${hiringDesc4Value * 100}%
+        );`;
+      }
+      if (0 > sectionInfo[3].objs.desc5.getBoundingClientRect().top - h) {
+        sectionInfo[3].objs.desc5.style.cssText = `background-image: linear-gradient(
+            135deg, rgba(0, 0, 0, 1) ${
+              -100 + hiringDesc5Value * 100
+            }%, rgba(0, 0, 0, 0) ${hiringDesc5Value * 100}%
+        );`;
       }
     }
 
@@ -156,8 +282,8 @@
     window.addEventListener("scroll", () => {
       yOffset = window.pageYOffset;
       basePoint = yOffset + h / 2;
-      console.log("yOffset", yOffset);
-      // console.log("basePoint", basePoint);
+      // console.log("yOffset", yOffset);
+      // console.log("yOffset + h", yOffset + h);
       animate();
     });
   }
@@ -165,11 +291,8 @@
   window.addEventListener("load", () => {
     document.body.classList.remove("before-load");
     setLayout();
-    sectionInfo[0].objs.context.fillStyle = "#B9FF7D";
-    sectionInfo[0].objs.context.fillRect(0, 0, w, h);
-
-    console.log(sectionInfo[1].objs.item1.getBoundingClientRect().top);
-    console.log(sectionInfo[1].objs.item2.getBoundingClientRect().top);
-    console.log(sectionInfo[2].objs.titleDraw.getBoundingClientRect().top);
+    sectionInfo[0].objs.visual.classList.add("on");
+    // sectionInfo[0].objs.context.fillStyle = "#B9FF7D";
+    // sectionInfo[0].objs.context.fillRect(0, 0, w, h);
   });
 })();
