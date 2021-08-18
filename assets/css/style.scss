@@ -18,14 +18,6 @@ $leftIndent: 15.9722222222222vw;
 $rightIndent: 7.9861111111111vw;
 $sectionGap: 240px;
 
-// $gradientProgress: -10.4652%;
-// $gradientProgress2: 89.5348%;
-// $gradientAngle: 135deg;
-// $gradientColor: 0;
-// $gradientColor2: 0;
-// $gradientOpacity: 1;
-// $gradientOpacity2: 0;
-
 @mixin titleLine($height) {
   content: "";
   display: block;
@@ -77,12 +69,10 @@ $sectionGap: 240px;
 
 @keyframes visualEffect {
   0% {
-    // opacity: 0;
     transform: scale(200%);
     filter: blur(100px);
   }
   100% {
-    // opacity: 1;
     transform: scale(100%);
     filter: blur(0px);
   }
@@ -120,6 +110,7 @@ body {
     width: 102px;
     height: 24px;
     margin-right: auto;
+    animation: blurEffect 0.5s 0.1s forwards;
     a {
       width: 100%;
       height: 100%;
@@ -132,8 +123,16 @@ body {
     margin-right: 17.0833333333333vw;
     .menu {
       font-weight: 700;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(40px);
       &:not(:last-child) {
         margin-right: 74px;
+      }
+    }
+    @for $i from 1 through 4 {
+      .menu:nth-child(#{$i}) {
+        animation: fadeIn 0.5s 0.1 + 0.1s * $i forwards;
       }
     }
   }
@@ -143,6 +142,10 @@ body {
     display: block;
     background: url(#{$urlImage}/ic_instagram.svg);
     background-size: cover;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(40px);
+    animation: fadeIn 0.5s 0.6s forwards;
   }
 }
 
@@ -153,8 +156,11 @@ body {
 
 section {
   position: relative;
+  &:not(:first-child) {
+    padding-top: $sectionGap / 2;
+  }
   &:not(:last-child) {
-    margin-bottom: $sectionGap;
+    padding-bottom: $sectionGap / 2;
   }
 }
 
@@ -163,9 +169,7 @@ section {
     min-height: 100vh;
   }
   .visual {
-    // padding-top: 30px;
     width: 86.4583333333333vw;
-    // height: 53.8541666666667vw;
     .blank {
       height: 30px;
       display: block;
@@ -174,13 +178,7 @@ section {
       background-color: #fff;
     }
     img {
-      // opacity: 0;
       width: 100%;
-    }
-    &.on {
-      img {
-        // animation: visualEffect 1s forwards;
-      }
     }
     canvas {
       width: 86.4583333333333vw;
@@ -228,7 +226,6 @@ section {
             @for $i from 1 through 9 {
               span:nth-child(#{$i}) {
                 animation: textRowPop 0.5s 0.05s * $i forwards;
-                // animation: textRowPop 0.5s 0.1s * $i forwards;
               }
             }
           }
@@ -248,7 +245,6 @@ section {
       padding-left: $leftIndent;
       font-size: $baseFontSize;
       position: absolute;
-      // top: 20vh;
       top: 63px;
       span {
         line-height: 1.5em;
@@ -258,7 +254,6 @@ section {
     .arrow__wrap {
       display: flex;
       justify-content: space-between;
-      // align-items: center;
       min-height: 100vh;
       padding: 63px 0;
       .arrow {
@@ -323,14 +318,10 @@ section {
     top: 0;
     z-index: 10;
     pointer-events: none;
-    // opacity: 0;
     .title {
       font-size: $baseFontSize * 6;
       font-weight: 500;
       font-family: "Noto Sans KR", sans-serif;
-      // background-clip: text;
-      // -webkit-background-clip: text;
-      // -webkit-text-fill-color: transparent;
       .draw {
         font-family: "Amiri", serif;
         span {
@@ -385,16 +376,24 @@ section {
         font-size: $baseFontSize * 0.75;
         line-height: 1.25em;
         padding-top: 4px;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0px);
+        transition: 0.5s;
       }
       .thumb {
-        pointer-events: none;
+        // pointer-events: none;
+        position: absolute;
         opacity: 0;
         visibility: hidden;
         transition: 0.5s;
-        height: 0;
-        transform: scale(0);
-        img {
+        // height: 0;
+        transform: translateY(40px);
+        overflow: hidden;
+        img,
+        video {
           width: 100%;
+          margin: 0 auto;
         }
       }
       &:nth-child(odd) {
@@ -402,11 +401,17 @@ section {
         .num {
           margin-right: 20px;
         }
+        .thumb {
+          left: 63px;
+        }
       }
       &:nth-child(even) {
         flex-direction: row-reverse;
         .num {
           margin-left: 20px;
+        }
+        .thumb {
+          right: 63px;
         }
       }
       &:nth-child(1) {
@@ -416,12 +421,6 @@ section {
           width: 534px;
           height: 300px;
         }
-        &:after {
-          content: url(#{$urlVideo}/playin_1.mp4);
-          display: block;
-          width: 500px;
-          height: 300px;
-        }
       }
       &:nth-child(2) {
         top: 360px;
@@ -429,11 +428,15 @@ section {
         .thumb {
           width: 325px;
           height: 462px;
+          video {
+            object-fit: cover;
+          }
         }
       }
       &:nth-child(3) {
         top: 457px;
         left: calc(6.5277777777778vw - 40px);
+
         .thumb {
           width: 440px;
           height: 285px;
@@ -458,10 +461,15 @@ section {
         }
       }
       &:hover {
+        .name {
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-20px);
+        }
         .thumb {
           opacity: 1;
           visibility: visible;
-          height: 100%;
+          transform: translateY(0px);
         }
       }
     }
@@ -500,8 +508,6 @@ section {
         display: inline-block;
         &:before {
           @include titleLine(0.25em);
-          // width: var(--titleBarWidth);
-          // transition: none;
         }
         span {
           display: flex;
@@ -514,25 +520,10 @@ section {
       }
       .desc {
         font-size: $baseFontSize * 0.75;
-        // opacity: 0;
-        // transform: translateY(20px);
-        // visibility: hidden;
-        // transition: 0.5s 0.2s;
+
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        // background-image: linear-gradient(
-        //   $gradientAngle,
-        //   rgba($gradientColor, $gradientColor, $gradientColor, $gradientOpacity)
-        //     $gradientProgress,
-        //   rgba(
-        //       $gradientColor2,
-        //       $gradientColor2,
-        //       $gradientColor2,
-        //       $gradientOpacity2
-        //     )
-        //     $gradientProgress2
-        // );
       }
       &.on {
         .title {
@@ -542,15 +533,11 @@ section {
           @for $i from 1 through 20 {
             span:nth-child(#{$i}) {
               animation: textRowPop 0.5s 0.05s * $i forwards;
-              // animation: textRowPop 0.5s 0.1s * $i forwards;
             }
           }
         }
-        .desc {
-          // opacity: 1;
-          // visibility: visible;
-          // transform: translateY(0);
-        }
+      }
+      &:after {
       }
     }
   }
@@ -658,6 +645,7 @@ section {
             align-items: center;
             width: 100%;
             .checked {
+              cursor: pointer;
               display: block;
               width: 1.5em;
               height: 1.5em;
@@ -665,6 +653,9 @@ section {
               border: 1px solid $black;
               margin-right: $baseGap * 2;
               transition: 0.3s;
+            }
+            .value {
+              cursor: pointer;
             }
             label {
               width: auto;

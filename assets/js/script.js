@@ -44,6 +44,7 @@
         copy: document.querySelector("#works .copy"),
         title: document.querySelector("#works .copy > .title"),
         titleDraw: document.querySelector("#works .draw"),
+        items: document.querySelectorAll("#works .item"),
         item1: document.querySelector("#works .item1"),
         item2: document.querySelector("#works .item2"),
         item3: document.querySelector("#works .item3"),
@@ -55,11 +56,13 @@
       objs: {
         container: document.querySelector("#hiring"),
         title: document.querySelector("#hiring > .title"),
+        items: document.querySelectorAll("#hiring .item"),
         item1: document.querySelector("#hiring .item1"),
         item2: document.querySelector("#hiring .item2"),
         item3: document.querySelector("#hiring .item3"),
         item4: document.querySelector("#hiring .item4"),
         item5: document.querySelector("#hiring .item5"),
+        descs: document.querySelectorAll("#hiring .desc"),
         desc1: document.querySelector("#hiring .item1 .desc"),
         desc2: document.querySelector("#hiring .item2 .desc"),
         desc3: document.querySelector("#hiring .item3 .desc"),
@@ -86,7 +89,6 @@
 
     function animate() {
       // home
-
       let homeTitleValue =
         (h - sectionInfo[0].objs.title.getBoundingClientRect().top) / (h / 2);
       if (yOffset + h > sectionInfo[0].objs.word1.offsetTop - h) {
@@ -97,14 +99,16 @@
         });
       }
 
-      if (yOffset > sectionInfo[0].objs.title.offsetTop - 100) {
-        console.log(
-          "~~~~~~~~~~~~~~",
-          yOffset - sectionInfo[0].objs.title.offsetTop - 100
-        );
+      if (0 > sectionInfo[0].objs.title.getBoundingClientRect().top) {
+        let titleOpacityValue =
+          1 +
+          sectionInfo[0].objs.title.getBoundingClientRect().top /
+            sectionInfo[0].objs.title.getBoundingClientRect().height;
+        sectionInfo[0].objs.title.style.opacity = titleOpacityValue;
       }
+
+      // about
       if (0 > sectionInfo[1].objs.item1.getBoundingClientRect().top - h) {
-        // about
         sectionInfo[1].objs.arrows.forEach((item) => {
           item.classList.remove("on");
         });
@@ -124,7 +128,6 @@
       }
 
       // works
-
       let worksTitleValue =
         (h - sectionInfo[2].objs.title.getBoundingClientRect().bottom) /
         (h / 2);
@@ -134,11 +137,6 @@
           70 - worksTitleValue * 70
         }px)`;
         sectionInfo[2].objs.copy.style.opacity = worksTitleValue;
-        console.log(
-          "동작해야함",
-          (h - sectionInfo[2].objs.title.getBoundingClientRect().bottom) /
-            (h / 2)
-        );
       }
       if (
         0 >
@@ -147,18 +145,18 @@
         sectionInfo[2].objs.titleDraw.classList.add("on");
       }
 
-      // if (0 > sectionInfo[2].objs.title.getBoundingClientRect().top - h) {
-      //   console.log(-100 + worksTitleValue * 100, worksTitleValue * 100);
-      //   sectionInfo[2].objs.title.style.cssText = `background-image: linear-gradient(
-      //       135deg, rgba(0, 0, 0, 1) ${
-      //         -100 + worksTitleValue * 100
-      //       }%, rgba(0, 0, 0, 0) ${worksTitleValue * 100}%
-      //   );`;
-      // }
       if (worksTitleValue > 1) {
         worksTitleValue = 1;
       } else if (worksTitleValue < 0) {
         worksTitleValue = 0;
+      }
+
+      if (0 > sectionInfo[2].objs.copy.getBoundingClientRect().top) {
+        let copyOpacityValue =
+          1 +
+          sectionInfo[2].objs.copy.getBoundingClientRect().top /
+            sectionInfo[2].objs.copy.getBoundingClientRect().height;
+        sectionInfo[2].objs.copy.style.opacity = copyOpacityValue;
       }
 
       let worksItem1Value =
@@ -173,7 +171,7 @@
       if (0 > sectionInfo[2].objs.item1.getBoundingClientRect().top - h) {
         sectionInfo[2].objs.item1.style.cssText = `
           opacity: ${worksItem1Value * 2};
-          // transform: translate3d(0,${worksItem1Value * 60}px,0);
+          transform: translate3d(0,${worksItem1Value * 10}px,0);
         `;
         sectionInfo[2].objs.item1.style.opacity = worksItem1Value * 2;
       }
@@ -220,13 +218,9 @@
       let hiringDesc5Value =
         (h - sectionInfo[3].objs.desc5.getBoundingClientRect().top) / (h / 2);
 
-      // if (0 > sectionInfo[3].objs.item1.getBoundingClientRect().bottom - h) {
-      //   sectionInfo[3].objs.item1.classList.add("on");
-      //   sectionInfo[3].objs.item1.style.setProperty(
-      //     "--titleBarWidth",
-      //     `${110 * hiringDesc1Value}%`
-      //   );
-      // }
+      if (0 > sectionInfo[3].objs.item1.getBoundingClientRect().bottom - h) {
+        sectionInfo[3].objs.item1.classList.add("on");
+      }
       if (0 > sectionInfo[3].objs.item2.getBoundingClientRect().bottom - h) {
         sectionInfo[3].objs.item2.classList.add("on");
       }
