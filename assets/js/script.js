@@ -133,9 +133,9 @@
         (h / 2);
 
       if (0 > sectionInfo[2].objs.copy.getBoundingClientRect().top - h) {
-        sectionInfo[2].objs.copy.style.transform = `translateY(${
-          70 - worksTitleValue * 70
-        }px)`;
+        // sectionInfo[2].objs.copy.style.transform = `translateY(${
+        //   70 - worksTitleValue * 70
+        // }px)`;
         sectionInfo[2].objs.copy.style.opacity = worksTitleValue;
       }
       if (
@@ -171,7 +171,7 @@
       if (0 > sectionInfo[2].objs.item1.getBoundingClientRect().top - h) {
         sectionInfo[2].objs.item1.style.cssText = `
           opacity: ${worksItem1Value * 2};
-          transform: translate3d(0,${worksItem1Value * 10}px,0);
+          transform: translate3d(0,${worksItem1Value * 140}px,0);
         `;
         sectionInfo[2].objs.item1.style.opacity = worksItem1Value * 2;
       }

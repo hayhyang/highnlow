@@ -312,8 +312,9 @@ section {
 }
 
 #works {
+  padding-top: 0;
   .copy {
-    padding-top: 184px;
+    padding-top: 37.5vh;
     position: sticky;
     top: 0;
     z-index: 10;
@@ -330,7 +331,7 @@ section {
         &.on {
           span {
             &:nth-child(1) {
-              animation: blurEffect 1s 0.3s forwards;
+              animation: blurEffect 1s 0.5s forwards;
             }
             &:nth-child(2) {
               animation: blurEffect 0.7s 0.1s forwards;
@@ -339,13 +340,13 @@ section {
               animation: blurEffect 0.6s 0.4s forwards;
             }
             &:nth-child(4) {
-              animation: blurEffect 0.7s 0.6s forwards;
+              animation: blurEffect 0.7s 0.3s forwards;
             }
             &:nth-child(5) {
               animation: blurEffect 0.9s 0.2s forwards;
             }
             &:nth-child(6) {
-              animation: blurEffect 0.5s 0.5s forwards;
+              animation: blurEffect 0.5s 0.6s forwards;
             }
           }
         }
@@ -415,7 +416,7 @@ section {
         }
       }
       &:nth-child(1) {
-        top: 0;
+        top: 400px;
         left: calc(46.4583333333333vw - 40px);
         .thumb {
           width: 534px;
@@ -423,7 +424,7 @@ section {
         }
       }
       &:nth-child(2) {
-        top: 360px;
+        top: 760px;
         right: calc(30.4861111111111vw - 40px);
         .thumb {
           width: 325px;
@@ -434,7 +435,7 @@ section {
         }
       }
       &:nth-child(3) {
-        top: 457px;
+        top: 857px;
         left: calc(6.5277777777778vw - 40px);
 
         .thumb {
@@ -443,7 +444,7 @@ section {
         }
       }
       &:nth-child(4) {
-        top: 534px;
+        top: 934px;
         right: calc(14.5138888888889vw - 40px);
         .thumb {
           width: 440px;
@@ -520,7 +521,7 @@ section {
       }
       .desc {
         font-size: $baseFontSize * 0.75;
-
+        pointer-events: none;
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
