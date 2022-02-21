@@ -142,6 +142,7 @@
         0 >
         sectionInfo[2].objs.titleDraw.getBoundingClientRect().top - h * 0.6
       ) {
+        sectionInfo[2].objs.copy.style.opacity = 1;
         sectionInfo[2].objs.titleDraw.classList.add("on");
       }
 
@@ -184,7 +185,7 @@
       if (0 > sectionInfo[2].objs.item3.getBoundingClientRect().top - h) {
         sectionInfo[2].objs.item3.style.cssText = `
           opacity: ${worksItem3Value * 2};
-          transform: translate3d(0,${worksItem3Value * 80}px,0);
+          transform: translate3d(0,${worksItem3Value * 20}px,0);
         `;
       }
       if (0 > sectionInfo[2].objs.item4.getBoundingClientRect().top - h) {
@@ -199,7 +200,6 @@
         (h - sectionInfo[3].objs.title.getBoundingClientRect().top) / (h / 2);
 
       if (0 > sectionInfo[3].objs.title.getBoundingClientRect().top - h) {
-        console.log(-100 + hiringTitleValue * 100, hiringTitleValue * 100);
         sectionInfo[3].objs.title.style.cssText = `background-image: linear-gradient(
             135deg, rgba(0, 0, 0, 1) ${
               -100 + hiringTitleValue * 100

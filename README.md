@@ -1,2 +1,36 @@
-# highnlow
-High N Low
+# Highnlow Brand Website
+
+## 개발 환경 및 사용 라이브러리
+
+- npm
+- parcel-bundler
+- scss
+
+## 폴더 구조 설명
+
+- `assets`
+  - `css`
+  - `images`: 배경 이미지 및 아이콘
+  - `js`
+  - `videos`: 동영상
+
+## 설치
+
+```shell
+npm i
+```
+
+## Dev 환경 실행
+
+```shell
+npm run dev
+```
+
+[http://localhost:1234](http://localhost:1234) 로 열림
+
+## 반응형
+
+1280px (웹)
+1024px (아이패드 12.9인치)
+768px (아이패드 10.9인치)
+414px (아이폰)

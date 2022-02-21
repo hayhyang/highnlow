@@ -1,0 +1,23 @@
+{
+  "projects": {
+    "project1": {
+      "title": "플레인 App",
+      "desc": "내 손 안의 또 다른 세계, 플레인 Playin(플레인)은 언제 어디서나 인터렉티브한 XR 게임을 즐길 수 있는 실감형 콘텐츠 플랫폼 앱입니다. 현실의 공간에 가상으로 연출된 스토리 및 게임이 대입되어 오락, 교육, 관광 안내 등 다양한 목적을 가진 콘텐츠가 만들어 집니다. Playin은 아이들을 위한 교육용 XR 게임, 1020세대를 타겟한 XR 방탈출 게임, 또는 특정 브랜드를 상업적으로 홍보하기 위한 마케팅용 XR 게임 등 다양하고 실감나는 게임 콘텐츠들을 제공합니다.",
+      "images": [
+        "asssets/images/playinApp_1.png",
+        "asssets/images/playinApp_2.png",
+        "asssets/images/playinApp_3.png",
+        "asssets/images/playinApp_4.png",
+        "asssets/images/playinApp_5.png"
+      ]
+    },
+    "project2": {
+      "title": "플레인 심리테스트 모바일 웹",
+      "desc": "플레인 앱의 유입 전략으로 심리테스트를 기획, 디자인 및 개발하였습니다. 서비스 타겟이 20대 초반인 만큼, 외계인 ‘대학교’를 콘셉트로 스토리를 구상하였습니다. 스스로를 유형화하고 규정하는 것을 즐기는 MZ 세대로부터 강력한 호응을 얻어 18만 명의 조회수를 기록하였습니다.",
+      "images": [
+        "asssets/images/playinMbWeb_1.png",
+        "asssets/images/playinMbWeb_2.png"
+      ]
+    }
+  }
+}

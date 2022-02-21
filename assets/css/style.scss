@@ -28,7 +28,6 @@ $sectionGap: 240px;
   height: $height;
   background-color: $primary;
   transform: skew(10deg);
-  z-index: -1;
   transition: 0.7s;
 }
 
@@ -118,24 +117,7 @@ body {
       background-size: cover;
     }
   }
-  .nav {
-    display: flex;
-    margin-right: 17.0833333333333vw;
-    .menu {
-      font-weight: 700;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(40px);
-      &:not(:last-child) {
-        margin-right: 74px;
-      }
-    }
-    @for $i from 1 through 4 {
-      .menu:nth-child(#{$i}) {
-        animation: fadeIn 0.5s 0.1 + 0.1s * $i forwards;
-      }
-    }
-  }
+
   .sns {
     width: 24px;
     height: 24px;
@@ -152,6 +134,38 @@ body {
 #aside {
   position: fixed;
   right: 44px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: url(#{$urlImage}/aside.svg) no-repeat center center;
+  width: 14px;
+  height: 196px;
+  z-index: 100;
+}
+
+.nav {
+  position: fixed;
+  top: 20px;
+  right: 21.5277777777778vw;
+  z-index: 100;
+  display: flex;
+  .menu {
+    font-weight: 700;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(40px);
+    &:not(:last-child) {
+      margin-right: 74px;
+    }
+  }
+  @for $i from 1 through 4 {
+    .menu:nth-child(#{$i}) {
+      animation: fadeIn 0.5s 0.1 + 0.1s * $i forwards;
+    }
+  }
+}
+
+#container {
+  background-color: #fff;
 }
 
 section {
@@ -240,7 +254,7 @@ section {
     position: sticky;
     top: 0;
     min-height: 100vh;
-    z-index: -1;
+    z-index: 0;
     .title {
       padding-left: $leftIndent;
       font-size: $baseFontSize;
@@ -290,8 +304,10 @@ section {
     }
   }
   .copy {
+    position: relative;
     display: flex;
     padding-right: $rightIndent;
+    z-index: 10;
     .list {
       width: 38.5416666666667vw;
       margin-left: auto;
@@ -361,6 +377,7 @@ section {
   }
   .list {
     height: 72.3611111111111vw;
+    position: relative;
     // height: 100vw;
     .item {
       position: absolute;
@@ -383,14 +400,13 @@ section {
         transition: 0.5s;
       }
       .thumb {
-        // pointer-events: none;
         position: absolute;
         opacity: 0;
         visibility: hidden;
         transition: 0.5s;
-        // height: 0;
         transform: translateY(40px);
         overflow: hidden;
+        // z-index: -1000;
         img,
         video {
           width: 100%;
@@ -469,6 +485,7 @@ section {
         }
         .thumb {
           opacity: 1;
+          z-index: 1000;
           visibility: visible;
           transform: translateY(0px);
         }
@@ -538,8 +555,8 @@ section {
           }
         }
       }
-      &:after {
-      }
+      // &:after {
+      // }
     }
   }
 }
@@ -548,6 +565,8 @@ section {
   padding-left: $leftIndent;
   .copy {
     width: 47.0138888888889vw;
+    position: relative;
+    z-index: 10;
     .descs {
       margin-bottom: 120px;
       .desc {
@@ -699,6 +718,94 @@ section {
     .link {
       margin-left: 46px;
       text-decoration: underline;
+    }
+  }
+}
+
+/* SUB */
+.sub {
+  #wrap {
+    padding: 0;
+    position: relative;
+  }
+  .visual {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    video {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+  }
+  .contents {
+    position: relative;
+    margin-top: 100vh;
+
+    padding: 0 40px;
+    width: 100vw;
+    min-height: 100vh;
+    .info {
+      padding: 56px 10.7638888888889vw 78px;
+      display: flex;
+      .title {
+        flex-basis: 50.6944444444444%;
+        flex-shrink: 0;
+        .name {
+          font-size: 36px;
+          margin-bottom: 0.666666666666667em;
+        }
+        .createAt {
+          display: block;
+          font-size: 12px;
+          color: #687070;
+        }
+      }
+      .desc {
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.666666666666667em;
+      }
+    }
+    .layout {
+      .grid__wrap {
+        &:not(:last-child) {
+          margin-bottom: 80px;
+        }
+      }
+      .grid__item {
+        img {
+          width: 100%;
+        }
+        .desc {
+          font-size: $baseFontSize * 0.75;
+          font-weight: 700;
+          margin-top: 1.666666666666667em;
+        }
+      }
+    }
+  }
+  .pager {
+    display: flex;
+    justify-content: space-between;
+    padding: 70px 40px 48px;
+    .arrow {
+      display: flex;
+      flex-direction: column;
+      font-size: $baseFontSize;
+      line-height: 1.5em;
+      &.prev {
+        justify-content: flex-start;
+        img {
+          transform: rotate(180deg);
+        }
+      }
+      &.next {
+        justify-content: flex-end;
+      }
     }
   }
 }
