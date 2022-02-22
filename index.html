@@ -463,26 +463,57 @@
                 </svg>
               </div>
             </div>
-            <div class="form">
+            <form id="form" method="POST">
               <div class="input__box text">
                 <label>이름</label>
-                <input type="text" placeholder="이름" required />
+                <input
+                  type="text"
+                  placeholder="이름"
+                  required
+                  name="name"
+                  id="name"
+                />
               </div>
               <div class="input__box text">
                 <label>기업/단체명</label>
-                <input type="text" placeholder="기업/단체명" required />
+                <input
+                  id="organization"
+                  type="text"
+                  placeholder="기업/단체명"
+                  required
+                  name="organization"
+                />
               </div>
               <div class="input__box text">
                 <label>이메일</label>
-                <input type="text" placeholder="이메일" required />
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="이메일"
+                  required
+                  name="email"
+                />
               </div>
               <div class="input__box text">
                 <label>연락처</label>
-                <input type="text" placeholder="연락처" required />
+                <input
+                  id="mobile"
+                  type="tel"
+                  placeholder="연락처"
+                  required
+                  name="mobile"
+                  maxlength="11"
+                />
               </div>
               <div class="input__box textarea">
                 <label>내용</label>
-                <textarea type="text" placeholder="내용" required></textarea>
+                <textarea
+                  id="content"
+                  type="text"
+                  placeholder="내용"
+                  required
+                  name="content"
+                ></textarea>
               </div>
               <div class="input__box checkbox">
                 <label for="agree">
@@ -493,8 +524,12 @@
                   >
                 </label>
               </div>
-              <input type="submit" value="문의 내용 전송하기" />
-            </div>
+              <input
+                type="submit"
+                value="문의 내용 전송하기"
+                id="submit_button"
+              />
+            </form>
           </div>
         </section>
       </div>
@@ -507,5 +542,6 @@
       </footer>
     </div>
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/email.js"></script>
   </body>
 </html>
