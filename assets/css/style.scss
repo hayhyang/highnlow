@@ -257,7 +257,7 @@ section {
     z-index: 0;
     .title {
       padding-left: $leftIndent;
-      font-size: $baseFontSize;
+      font-size: $baseFontSize * 1.5;
       position: absolute;
       top: 63px;
       span {
@@ -313,12 +313,15 @@ section {
       margin-left: auto;
     }
     .item {
-      font-size: $baseFontSize * 0.75;
       margin-bottom: 238px;
       &:last-child {
         margin-bottom: 100vh;
       }
+      .title {
+        font-size: $baseFontSize * 1.25;
+      }
       .desc {
+        font-size: $baseFontSize * 0.875;
         margin-top: 1.5em;
         font-weight: 700;
         line-height: 1.666666666666667em;
@@ -369,7 +372,7 @@ section {
       }
     }
     .desc {
-      font-size: $baseFontSize * 0.75;
+      font-size: $baseFontSize;
       font-weight: 700;
       line-height: 1.583333333333333em;
       margin-top: 0.5em;
@@ -382,7 +385,7 @@ section {
     .item {
       position: absolute;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       cursor: pointer;
       .num {
         font-size: $baseFontSize * 2.25;
@@ -391,13 +394,19 @@ section {
         color: $primary;
       }
       .name {
-        font-size: $baseFontSize * 0.75;
+        font-size: $baseFontSize;
         line-height: 1.25em;
-        padding-top: 4px;
         opacity: 1;
         visibility: visible;
         transform: translateY(0px);
         transition: 0.5s;
+        span {
+          display: block;
+          font-size: $baseFontSize * 0.625;
+          line-height: 1em;
+          font-weight: 100;
+          margin-top: 0.3em;
+        }
       }
       .thumb {
         position: absolute;
@@ -514,12 +523,14 @@ section {
       margin-bottom: 80px;
     }
     .desc {
+      font-size: $baseFontSize * 1.25;
       line-height: 1.5em;
       font-weight: 700;
     }
     .item {
       --titleBarWidth: 0;
       .title {
+        font-size: $baseFontSize * 1.25;
         font-weight: 900;
         margin-bottom: 1.25em;
         position: relative;
@@ -537,7 +548,7 @@ section {
         }
       }
       .desc {
-        font-size: $baseFontSize * 0.75;
+        font-size: $baseFontSize * 0.875;
         pointer-events: none;
         background-clip: text;
         -webkit-background-clip: text;
@@ -555,8 +566,6 @@ section {
           }
         }
       }
-      // &:after {
-      // }
     }
   }
 }
@@ -570,6 +579,7 @@ section {
     .descs {
       margin-bottom: 120px;
       .desc {
+        font-size: $baseFontSize * 1.25;
         font-weight: 700;
         line-height: 1.5em;
         &:not(:last-child) {
@@ -622,7 +632,7 @@ section {
         }
       }
       .desc {
-        font-size: $baseFontSize;
+        font-size: $baseFontSize * 1.25;
         font-weight: 700;
         line-height: 1.5em;
       }

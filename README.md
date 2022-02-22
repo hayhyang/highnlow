@@ -13,11 +13,12 @@
   - `images`: 배경 이미지 및 아이콘
   - `js`
   - `videos`: 동영상
+- 'index.html'
 
 ## 설치
 
 ```shell
-npm i
+npm install
 ```
 
 ## Dev 환경 실행
@@ -27,10 +28,3 @@ npm run dev
 ```
 
 [http://localhost:1234](http://localhost:1234) 로 열림
-
-## 반응형
-
-1280px (웹)
-1024px (아이패드 12.9인치)
-768px (아이패드 10.9인치)
-414px (아이폰)
