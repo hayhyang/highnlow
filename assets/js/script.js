@@ -7,6 +7,7 @@
   let gradientProgress = -10.4652;
   let gradientProgress2 = 89.5348;
   let gradientAngle = getStyle.getPropertyValue("$gradientAngle");
+  const navMenuList = document.querySelectorAll(".nav .menu");
 
   const sectionInfo = [
     {
@@ -91,20 +92,35 @@
       // home
       let homeTitleValue =
         (h - sectionInfo[0].objs.title.getBoundingClientRect().top) / (h / 2);
-      if (yOffset + h > sectionInfo[0].objs.word1.offsetTop - h) {
+
+      let titleOpacityValue =
+        1 +
+        sectionInfo[0].objs.title.getBoundingClientRect().top /
+          sectionInfo[0].objs.title.getBoundingClientRect().height;
+
+      if (w > 900) {
+        if (yOffset + h > sectionInfo[0].objs.word1.offsetTop - h) {
+          sectionInfo[0].objs.words.forEach((word, i) => {
+            setTimeout(function () {
+              word.classList.add("on");
+            }, 100 * (i + 1));
+          });
+        }
+
+        if (0 > sectionInfo[0].objs.title.getBoundingClientRect().top) {
+          sectionInfo[0].objs.title.style.opacity = titleOpacityValue;
+        }
+      } else {
         sectionInfo[0].objs.words.forEach((word, i) => {
           setTimeout(function () {
             word.classList.add("on");
           }, 100 * (i + 1));
         });
-      }
-
-      if (0 > sectionInfo[0].objs.title.getBoundingClientRect().top) {
-        let titleOpacityValue =
-          1 +
-          sectionInfo[0].objs.title.getBoundingClientRect().top /
-            sectionInfo[0].objs.title.getBoundingClientRect().height;
         sectionInfo[0].objs.title.style.opacity = titleOpacityValue;
+      }
+      for (const el of navMenuList) {
+        el.classList.remove("on");
+        navMenuList[0].classList.add("on");
       }
 
       // about
@@ -113,6 +129,10 @@
           item.classList.remove("on");
         });
         sectionInfo[1].objs.arrow1.classList.add("on");
+        for (const el of navMenuList) {
+          el.classList.remove("on");
+          navMenuList[1].classList.add("on");
+        }
       }
       if (0 > sectionInfo[1].objs.item2.getBoundingClientRect().top - h) {
         sectionInfo[1].objs.arrows.forEach((item) => {
@@ -132,67 +152,73 @@
         (h - sectionInfo[2].objs.title.getBoundingClientRect().bottom) /
         (h / 2);
 
-      if (0 > sectionInfo[2].objs.copy.getBoundingClientRect().top - h) {
-        // sectionInfo[2].objs.copy.style.transform = `translateY(${
-        //   70 - worksTitleValue * 70
-        // }px)`;
-        sectionInfo[2].objs.copy.style.opacity = worksTitleValue;
-      }
-      if (
-        0 >
-        sectionInfo[2].objs.titleDraw.getBoundingClientRect().top - h * 0.6
-      ) {
-        sectionInfo[2].objs.copy.style.opacity = 1;
-        sectionInfo[2].objs.titleDraw.classList.add("on");
-      }
+      if (w > 900) {
+        if (0 > sectionInfo[2].objs.copy.getBoundingClientRect().top - h) {
+          // sectionInfo[2].objs.copy.style.transform = `translateY(${
+          //   70 - worksTitleValue * 70
+          // }px)`;
+          sectionInfo[2].objs.copy.style.opacity = worksTitleValue;
+          for (const el of navMenuList) {
+            el.classList.remove("on");
+            navMenuList[1].classList.add("on");
+          }
+        }
+        if (
+          0 >
+          sectionInfo[2].objs.titleDraw.getBoundingClientRect().top - h * 0.6
+        ) {
+          sectionInfo[2].objs.copy.style.opacity = 1;
+          sectionInfo[2].objs.titleDraw.classList.add("on");
+        }
 
-      if (worksTitleValue > 1) {
-        worksTitleValue = 1;
-      } else if (worksTitleValue < 0) {
-        worksTitleValue = 0;
-      }
+        if (worksTitleValue > 1) {
+          worksTitleValue = 1;
+        } else if (worksTitleValue < 0) {
+          worksTitleValue = 0;
+        }
 
-      if (0 > sectionInfo[2].objs.copy.getBoundingClientRect().top) {
-        let copyOpacityValue =
-          1 +
-          sectionInfo[2].objs.copy.getBoundingClientRect().top /
-            sectionInfo[2].objs.copy.getBoundingClientRect().height;
-        sectionInfo[2].objs.copy.style.opacity = copyOpacityValue;
-      }
+        if (0 > sectionInfo[2].objs.copy.getBoundingClientRect().top) {
+          let copyOpacityValue =
+            1 +
+            sectionInfo[2].objs.copy.getBoundingClientRect().top /
+              sectionInfo[2].objs.copy.getBoundingClientRect().height;
+          sectionInfo[2].objs.copy.style.opacity = copyOpacityValue;
+        }
 
-      let worksItem1Value =
-        (h - sectionInfo[2].objs.item1.getBoundingClientRect().top) / (h / 2);
-      let worksItem2Value =
-        (h - sectionInfo[2].objs.item2.getBoundingClientRect().top) / (h / 2);
-      let worksItem3Value =
-        (h - sectionInfo[2].objs.item3.getBoundingClientRect().top) / (h / 2);
-      let worksItem4Value =
-        (h - sectionInfo[2].objs.item4.getBoundingClientRect().top) / (h / 2);
+        let worksItem1Value =
+          (h - sectionInfo[2].objs.item1.getBoundingClientRect().top) / (h / 2);
+        let worksItem2Value =
+          (h - sectionInfo[2].objs.item2.getBoundingClientRect().top) / (h / 2);
+        let worksItem3Value =
+          (h - sectionInfo[2].objs.item3.getBoundingClientRect().top) / (h / 2);
+        let worksItem4Value =
+          (h - sectionInfo[2].objs.item4.getBoundingClientRect().top) / (h / 2);
 
-      if (0 > sectionInfo[2].objs.item1.getBoundingClientRect().top - h) {
-        sectionInfo[2].objs.item1.style.cssText = `
+        if (0 > sectionInfo[2].objs.item1.getBoundingClientRect().top - h) {
+          sectionInfo[2].objs.item1.style.cssText = `
           opacity: ${worksItem1Value * 2};
           transform: translate3d(0,${worksItem1Value * 140}px,0);
         `;
-        sectionInfo[2].objs.item1.style.opacity = worksItem1Value * 2;
-      }
-      if (0 > sectionInfo[2].objs.item2.getBoundingClientRect().top - h) {
-        sectionInfo[2].objs.item2.style.cssText = `
+          sectionInfo[2].objs.item1.style.opacity = worksItem1Value * 2;
+        }
+        if (0 > sectionInfo[2].objs.item2.getBoundingClientRect().top - h) {
+          sectionInfo[2].objs.item2.style.cssText = `
           opacity: ${worksItem2Value * 2};
           transform: translate3d(0,${worksItem2Value * 160}px,0);
         `;
-      }
-      if (0 > sectionInfo[2].objs.item3.getBoundingClientRect().top - h) {
-        sectionInfo[2].objs.item3.style.cssText = `
+        }
+        if (0 > sectionInfo[2].objs.item3.getBoundingClientRect().top - h) {
+          sectionInfo[2].objs.item3.style.cssText = `
           opacity: ${worksItem3Value * 2};
           transform: translate3d(0,${worksItem3Value * 20}px,0);
         `;
-      }
-      if (0 > sectionInfo[2].objs.item4.getBoundingClientRect().top - h) {
-        sectionInfo[2].objs.item4.style.cssText = `
+        }
+        if (0 > sectionInfo[2].objs.item4.getBoundingClientRect().top - h) {
+          sectionInfo[2].objs.item4.style.cssText = `
           opacity: ${worksItem4Value * 2};
           // transform: translate3d(0,${worksItem4Value * 100}px,0);
         `;
+        }
       }
 
       // hiring
@@ -205,6 +231,10 @@
               -100 + hiringTitleValue * 100
             }%, rgba(0, 0, 0, 0) ${hiringTitleValue * 100}%
         );`;
+        for (const el of navMenuList) {
+          el.classList.remove("on");
+          navMenuList[2].classList.add("on");
+        }
       }
 
       let hiringDesc1Value =
@@ -269,6 +299,14 @@
             }%, rgba(0, 0, 0, 0) ${hiringDesc5Value * 100}%
         );`;
       }
+
+      // contact
+      if (0 > sectionInfo[4].objs.container.getBoundingClientRect().top - h) {
+        for (const el of navMenuList) {
+          el.classList.remove("on");
+          navMenuList[3].classList.add("on");
+        }
+      }
     }
 
     window.addEventListener("resize", setLayout);
@@ -276,17 +314,54 @@
     window.addEventListener("scroll", () => {
       yOffset = window.pageYOffset;
       basePoint = yOffset + h / 2;
-      // console.log("yOffset", yOffset);
-      // console.log("yOffset + h", yOffset + h);
       animate();
+      addClassMenu();
     });
+  }
+
+  function mobileAnimation() {
+    let titleOpacityValue =
+      1 +
+      sectionInfo[0].objs.title.getBoundingClientRect().top /
+        sectionInfo[0].objs.title.getBoundingClientRect().height;
+    sectionInfo[0].objs.words.forEach((word, i) => {
+      setTimeout(function () {
+        word.classList.add("on");
+      }, 100 * (i + 1));
+    });
+    sectionInfo[0].objs.title.style.opacity = titleOpacityValue;
   }
 
   window.addEventListener("load", () => {
     document.body.classList.remove("before-load");
     setLayout();
+    mobileAnimation();
     sectionInfo[0].objs.visual.classList.add("on");
     // sectionInfo[0].objs.context.fillStyle = "#B9FF7D";
     // sectionInfo[0].objs.context.fillRect(0, 0, w, h);
   });
 })();
+
+const navButton = document.querySelector(".nav__button");
+const nav = document.querySelector(".nav");
+const logo = document.querySelector(".logo");
+const navMenuList = document.querySelectorAll(".nav .menu");
+
+navButton.addEventListener("click", () => {
+  nav.classList.toggle("on");
+  navButton.classList.toggle("on");
+  logo.classList.toggle("hide");
+  document.body.classList.toggle("scroll__none");
+});
+
+for (const el of navMenuList) {
+  el.addEventListener("click", function () {
+    for (const el of navMenuList) {
+      el.classList.remove("on");
+    }
+    el.classList.add("on");
+    nav.classList.remove("on");
+    navButton.classList.remove("on");
+    logo.classList.remove("hide");
+  });
+}

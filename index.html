@@ -18,7 +18,7 @@
     <div id="wrap">
       <script src="assets/js/templete.js"></script>
       <nav class="nav">
-        <li class="menu"><a href="#home">home</a></li>
+        <li class="menu on"><a href="#home">home</a></li>
         <li class="menu"><a href="#works">works</a></li>
         <li class="menu"><a href="#hiring">hiring</a></li>
         <li class="menu"><a href="#contact">contact</a></li>
@@ -29,12 +29,23 @@
             <div class="visual">
               <!-- <canvas id="canvas"></canvas> -->
               <span class="blank"></span>
-              <img src="assets/images/shape.svg" alt="hi, hello, highnlow" />
+              <img
+                class="web__only"
+                src="assets/images/shape.svg"
+                alt="hi, hello, highnlow"
+              />
+              <img
+                class="mobile__only"
+                src="assets/images/shape_mobile.svg"
+                alt="hi, hello, highnlow"
+              />
             </div>
             <div class="copy">
               <h2 class="title">
                 <span class="word word1">hi,</span>
-                <span class="word word2">hello!</span>
+                <span class="word word2"
+                  >hello!<img src="assets/images/were.gif" alt="highnlow"
+                /></span>
                 <span class="word word3">
                   <span>h</span>
                   <span>i</span>
@@ -141,7 +152,7 @@
                 <span>h</span><span>u</span><span>m</span><span>b</span
                 ><span>l</span><span>e</span>
               </span>
-              confiedence
+              confidence
             </h3>
             <p class="desc">
               우리는 이미 전문가이지만, 지금보다 더 성장하기 위해 늘 배우며
@@ -149,17 +160,36 @@
             </p>
           </div>
           <div class="list">
-            <a href="works.html" class="item item1">
+            <!-- <a href="works.html" class="item item1"> -->
+            <div class="item item1">
               <span class="num">(1)</span>
               <h4 class="name">플레인 App<span>2021~</span></h4>
               <div class="thumb">
                 <video autoplay muted loop>
-                  <source src="./assets/videos/playin_1.mp4" type="video/mp4" />
+                  <source
+                    src="./assets/videos/playin_app.mp4"
+                    type="video/mp4"
+                  />
                 </video>
               </div>
-            </a>
+            </div>
+            <!-- </a> -->
             <div class="item item2">
-              <span class="num">(2)</span>
+              <a href="https://playinstudio.com" target="_blank">
+                <span class="num">(2)</span>
+                <h4 class="name">플레인 스튜디오<span>2021~</span></h4>
+                <div class="thumb">
+                  <video autoplay muted loop>
+                    <source
+                      src="./assets/videos/playin_studio.mp4"
+                      type="video/mp4"
+                    />
+                  </video>
+                </div>
+              </a>
+            </div>
+            <div class="item item3">
+              <span class="num">(3)</span>
               <h4 class="name">
                 플레인 심리테스트 모바일 웹<span>2021.02</span>
               </h4>
@@ -169,17 +199,14 @@
                 </video>
               </div>
             </div>
-            <div class="item item3">
-              <span class="num">(3)</span>
-              <h4 class="name">드림스코어 App<span>2019.12</span></h4>
-              <div class="thumb">
-                <img src="assets/images/works3.png" />
-              </div>
-            </div>
             <div class="item item4">
               <span class="num">(4)</span>
-              <h4 class="name">블루워시 App<span>2019.08</span></h4>
-              <div class="thumb"><img src="assets/images/works4.png" /></div>
+              <h4 class="name">플레인 웹소설 APP<span>2022~</span></h4>
+              <div class="thumb">
+                <video autoplay muted loop>
+                  <source src="./assets/videos/playin_2.mp4" type="video/mp4" />
+                </video>
+              </div>
             </div>
           </div>
         </section>
@@ -535,10 +562,10 @@
       </div>
       <footer id="footer">
         <p class="copyright">&copy; Copyright highnlow All Reserved.</p>
-        <ul class="links">
+        <!-- <ul class="links">
           <li class="link"><a href="#">Privacy Policy</a></li>
           <li class="link"><a href="#">Terms of Use</a></li>
-        </ul>
+        </ul> -->
       </footer>
     </div>
     <script src="./assets/js/script.js"></script>
