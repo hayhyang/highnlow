@@ -320,16 +320,18 @@
   }
 
   function mobileAnimation() {
-    let titleOpacityValue =
-      1 +
-      sectionInfo[0].objs.title.getBoundingClientRect().top /
-        sectionInfo[0].objs.title.getBoundingClientRect().height;
-    sectionInfo[0].objs.words.forEach((word, i) => {
-      setTimeout(function () {
-        word.classList.add("on");
-      }, 100 * (i + 1));
-    });
-    sectionInfo[0].objs.title.style.opacity = titleOpacityValue;
+    if (w < 900) {
+      let titleOpacityValue =
+        1 +
+        sectionInfo[0].objs.title.getBoundingClientRect().top /
+          sectionInfo[0].objs.title.getBoundingClientRect().height;
+      sectionInfo[0].objs.words.forEach((word, i) => {
+        setTimeout(function () {
+          word.classList.add("on");
+        }, 100 * (i + 1));
+      });
+      sectionInfo[0].objs.title.style.opacity = titleOpacityValue;
+    }
   }
 
   window.addEventListener("load", () => {
