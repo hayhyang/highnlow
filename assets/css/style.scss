@@ -226,10 +226,10 @@ body {
 section {
   position: relative;
   &:not(:first-child) {
-    padding-top: $sectionGap / 2;
+    padding-top: 120px;
   }
   &:not(:last-child) {
-    padding-bottom: $sectionGap / 2;
+    padding-bottom: 120px;
   }
 }
 
@@ -683,7 +683,7 @@ section {
       .list {
         display: flex;
         flex-direction: column;
-        margin-bottom: $sectionGap / 2;
+        margin-bottom: 120px;
         .item {
           &:not(:last-child) {
             margin-bottom: 2.333333333333333em;
