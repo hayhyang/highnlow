@@ -1,20 +1,23 @@
 {
+  "homepage": "https://hayhyang.github.io/highnlow",
   "name": "highnlow",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "gh-pages": "^4.0.0",
     "parcel-bundler": "^1.12.5",
-    "sass": "^1.37.0"
+    "sass": "^1.56.1"
   },
   "dependencies": {
-    "@emailjs/browser": "^3.4.0"
+    "@emailjs/browser": "^3.10.0"
   }
 }
