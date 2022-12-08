@@ -369,7 +369,7 @@ exports.default = _default;
 
 var _browser = require("@emailjs/browser");
 
-(0, _browser.init)("user_Awr6KtvDuysdUwnHwX2rq");
+(0, _browser.init)("init");
 var form = document.getElementById("form");
 var name = document.querySelector("#name");
 var organization = document.querySelector("#organization");
@@ -393,8 +393,8 @@ var sendEmail = function sendEmail(e) {
   }
 
   btn.value = "Sending...";
-  var templateID = "template_pj3h1uw";
-  var serviceID = "service_fwtevtb";
+  var templateID = "templateID";
+  var serviceID = "serviceID";
   (0, _browser.sendForm)(serviceID, templateID, "#form").then(function () {
     btn.value = "문의 내용 전송하기";
     alert("이메일 전송이 완료되었습니다.");
