@@ -1,6 +1,6 @@
 import { init, sendForm } from "@emailjs/browser";
 
-init("user_Awr6KtvDuysdUwnHwX2rq");
+init("init");
 
 const form = document.getElementById("form");
 const name = document.querySelector("#name");
@@ -26,8 +26,8 @@ const sendEmail = (e) => {
 
   btn.value = "Sending...";
 
-  const templateID = "template_pj3h1uw";
-  const serviceID = "service_fwtevtb";
+  const templateID = "templateID";
+  const serviceID = "serviceID";
 
   sendForm(serviceID, templateID, "#form").then(
     () => {
