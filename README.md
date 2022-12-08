@@ -1,6 +1,6 @@
 # Highnlow Brand Website
 
-[https://highnlow.pingpong.house](https://hayhyang.github.com.io/highnlow)
+[https://highnlow.pingpong.house](https://hayhyang.github.io/highnlow/)
 
 ## 개발 환경 및 사용 라이브러리
 
